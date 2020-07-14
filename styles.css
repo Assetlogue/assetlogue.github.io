@@ -1,0 +1,144 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    background: #fafbfc;
+    color: #172b4d;
+}
+
+h1 {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+}
+
+h6 {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: normal;
+    color: #7a869a;
+    letter-spacing: 0.1px;
+}
+
+/* Atomic Flexbox Styles */
+.flex {
+    display: flex;
+}
+
+.fdc {
+    flex-direction: column;
+}
+
+.jcc {
+    justify-content: center;
+}
+
+.jcsb {
+    justify-content: space-between;
+}
+
+.aic {
+    align-items: center;
+}
+
+.fwrap {
+    flex-wrap: wrap;
+}
+
+.fgrow {
+    flex-grow: 1;
+}
+
+/* Report Styles */
+.topbar {
+    padding: 8px 15px;
+    background: linear-gradient(161.82deg, #72e9fe 9.89%, #0666f9 91.21%);
+    color: white;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.1px;
+}
+
+.topbar span {
+    flex: 1;
+}
+
+.topbar a {
+    color: white;
+}
+
+.header {
+    padding: 20px;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+    background: white;
+}
+
+.header-left {
+    flex: 2;
+}
+
+.header-right {
+    flex: 1;
+}
+
+.report-details > div {
+    flex: 0 0 33.333%;
+    margin-top: 12px;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background: white;
+    overflow: hidden;
+}
+
+section:not(:first-child) {
+    margin-top: 20px;
+}
+
+section h2 {
+    background: #42526e;
+    padding: 10px 12px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    border-radius: 6px 6px 0 0;
+}
+
+section > div {
+    border: 1px solid #c1c7d0;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 12px;
+}
+
+.map,
+.geo-details {
+    flex-basis: 50%;
+}
+
+.map {
+    background: #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.geo-details > div {
+    padding: 12px 0;
+    margin-left: 12px;
+}
+
+.geo-details > div:not(:first-child) {
+    border-top: solid 1px #c1c7d0;
+}
