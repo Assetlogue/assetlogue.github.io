@@ -1,7 +1,7 @@
 const json = [
     {
         type: "section",
-        title: "Geo Location",
+        title: "Geolocation",
         entries: [
             {
                 type: "map",
@@ -25,43 +25,43 @@ const json = [
                 required: true,
                 value: [
                     {
-                        url: "https://picsum.photos/200",
+                        url: "https://picsum.photos/seed/picsum/200",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
                     },
                     {
-                        url: "https://picsum.photos/200",
+                        url: "https://picsum.photos/seed/picsum/200",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
                     },
                     {
-                        url: "https://picsum.photos/200",
+                        url: "https://picsum.photos/seed/picsum/200",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
                     },
                     {
-                        url: "https://picsum.photos/200",
+                        url: "https://picsum.photos/seed/picsum/200",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
                     },
                     {
-                        url: "https://picsum.photos/200",
+                        url: "https://picsum.photos/seed/picsum/200",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
                     },
                     {
-                        url: "https://picsum.photos/200",
+                        url: "https://picsum.photos/seed/picsum/200",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
                     },
                     {
-                        url: "https://picsum.photos/200",
+                        url: "https://picsum.photos/seed/picsum/200",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",

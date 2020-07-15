@@ -1,0 +1,54 @@
+/* Print CSS reset
+   Author: @randalmaia
+   - Remove browser footer and header.
+   - Set page margin. 
+*/
+@page {
+    margin: 1cm;
+}
+
+body {
+    background: #fff !important;
+    color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #000;
+}
+
+main {
+    padding: 0;
+}
+
+header {
+    margin-bottom: 0.5cm;
+}
+
+section:not(:first-child) {
+    margin-top: 0.5cm;
+}
+
+section h2 {
+    border-radius: 6px 6px 0 0;
+    border: 1px solid #c1c7d0;
+    color: #000;
+}
+
+/* All unecessary elements */
+.topbar {
+    display: none;
+}
+
+a[href]:after {
+    content: " (" attr(href) ")";
+}
+
+a[href^="#"]:after,
+a[href^="javascript"]:after {
+    content: "";
+}

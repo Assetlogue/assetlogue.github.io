@@ -7,7 +7,7 @@
         
         header.innerHTML = 
             "<div class='topbar flex'>" +
-                "<span>Created with <a href='#'>Assetlogue</a></span>" +
+                "<span class='fgrow'>Created with <a href='#'>Assetlogue</a></span>" +
                 "<a href='#'>Log in</a>" +
             "</div>" +
             "<div class='header flex aic'>" +
@@ -29,7 +29,7 @@
                     "</div>" +
                 "</div>" +
                 "<div class='header-right flex jcc'>" +
-                    "<img src='./cleanaway-logo.png' alt='Cleanaway' />" +
+                    "<img src='./images/cleanaway-logo.png' alt='Cleanaway' />" +
                 "</div>" +
             "</div>";
 
@@ -92,9 +92,30 @@
                 "</div>";
             }
 
-            if(type !== "map"){
-                entries += "<div>" + "<h6>" + data.entries[i].title + "</h6>" + "<p>" + data.entries[i].value + "</p>" + "</div>";
+            if (type === "gallery") {
+                console.log(value)
+                var images;
+                
+                for (var i = 0; i < value.length; i++) {    
+                    images += "<div>" + 
+                            "<img src=" + value[i].url + " title=" + value[i].title + " alt=" + value[i].description + " />"
+                        "</div>" + 
+                    "</div>";
+                }
+
+                entries += 
+                "<div class='flex fdc'>" + 
+                    "<div class='alert'>Info! Full size images will be displayed last on printed reports</div>" + 
+                    "<div class='images flex fwrap'>" + 
+                    images +
+                "</div>";
+                
+                
             }
+
+            // if (type !== "map" || type !== "gallery") {
+            //     entries += "<div>" + "<h6>" + data.entries[i].title + "</h6>" + "<p>" + data.entries[i].value + "</p>" + "</div>";
+            // }
             
         }
 
