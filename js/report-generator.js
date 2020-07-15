@@ -12,7 +12,7 @@
             "</div>" +
             "<div class='header flex aic'>" +
                 "<div class='header-left'>" +
-                    "<h1>Report ID</h1>" +
+                    "<h1 class='flex aic'>Report ID <span class='draft-chip'>DRAFT</span></h1>" +
                     "<div class='report-details flex fwrap'>" +
                         "<div>" +
                             "<h6>Asset ID</h6>" +
@@ -27,6 +27,7 @@
                             "<div>400000000008</div>" +
                         "</div>" +
                     "</div>" +
+                    "<div class='alert aic'><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</div>"
                 "</div>" +
                 "<div class='header-right flex jcc'>" +
                     "<img src='./images/cleanaway-logo.png' alt='Cleanaway' />" +
@@ -103,7 +104,7 @@
 
                 entries += 
                     "<div class='flex fdc'>" + 
-                        "<div class='alert flex aic'>" + 
+                        "<div class='alert alert-invert flex aic'>" + 
                             "<strong>Info!</strong>&nbsp;Full size images will be displayed last on printed reports" +
                         "</div>" + 
                         "<div class='images flex fwrap'>" + images + "</div>" +
@@ -141,7 +142,12 @@
             }
         }
         
-        section.innerHTML = "<h2>" + sectionHeading + "</h2>" + container + entries;
+        section.innerHTML = 
+            "<h2 class='flex aic'>" + 
+                sectionHeading + 
+                "<span class='alert iflex aic'>Draft information</span>" + 
+            "</h2>" + 
+            container + entries;
 
         return section;
     }
