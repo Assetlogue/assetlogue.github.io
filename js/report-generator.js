@@ -59,7 +59,7 @@
 
             if (type === "map") {
                 var coordinates = data.entries[i].value.geometry.coordinates,
-                    notes = data.entries[i].value.notes
+                    notes = data.entries[i].value.notes;
                 
                 entries += 
                 "<div class='flex'>" + 
@@ -113,11 +113,9 @@
             else if (type === "section") {
                 var items = data.entries[i],
                     sectionTitle = items.title,
-                    sectionOutput = ""
+                    sectionOutput = "";
                 
-                for (i in items.entries) {
-                    console.log(items.entries[i])
-                    
+                for (i in items.entries) {                   
                     sectionOutput += 
                         "<div>" +
                             "<h6>" + items.entries[i].title + "</h6>" +
@@ -131,7 +129,7 @@
                         "<div class='flex jcsb'>" +
                             sectionOutput +
                         "</div>" +
-                    "</div>"
+                    "</div>";
             }
 
             else {
