@@ -93,24 +93,22 @@
             }
 
             if (type === "gallery") {
-                console.log(value)
-                var images;
+                var images = "";
                 
-                for (var i = 0; i < value.length; i++) {    
-                    images += "<div>" + 
-                            "<img src=" + value[i].url + " title=" + value[i].title + " alt=" + value[i].description + " />"
-                        "</div>" + 
-                    "</div>";
+                for (var i in value) {    
+                    images += 
+                        "<div>" + 
+                            "<img src='" + value[i].url + "' title='" + value[i].title + "' alt='" + value[i].description + "' />" +
+                        "</div>"; 
                 }
 
                 entries += 
-                "<div class='flex fdc'>" + 
-                    "<div class='alert'>Info! Full size images will be displayed last on printed reports</div>" + 
-                    "<div class='images flex fwrap'>" + 
-                    images +
-                "</div>";
-                
-                
+                    "<div class='flex fdc'>" + 
+                        "<div class='alert flex aic'>" + 
+                            "<strong>Info!</strong>&nbsp;Full size images will be displayed last on printed reports" +
+                        "</div>" + 
+                        "<div class='images flex fwrap'>" + images + "</div>" +
+                    "</div>";
             }
 
             // if (type !== "map" || type !== "gallery") {

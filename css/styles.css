@@ -50,6 +50,10 @@ h6 {
     letter-spacing: 0.1px;
 }
 
+strong {
+    font-weight: 500;
+}
+
 /* Atomic Flexbox Styles */
 .flex {
     display: flex;
@@ -144,6 +148,7 @@ section > div {
     padding: 12px;
 }
 
+/* Geolocation Styles */
 .map,
 .geo-details {
     flex-basis: 50%;
@@ -162,4 +167,28 @@ section > div {
 
 .geo-details > div:not(:first-child) {
     border-top: solid 1px #c1c7d0;
+}
+
+/* Image Gallery Styles */
+.alert::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    background: #172b4d;
+    -webkit-mask-image: url(../images/info.svg);
+    mask-image: url(../images/info.svg);
+}
+
+.images > div {
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 12px 12px 0 0;
+    height: 120px;
+}
+
+.images img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
 }
