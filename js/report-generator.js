@@ -47,20 +47,19 @@
     }
 
     function section(data) {
-        var section = document.createElement("section");
-        var sectionHeading = data.title;
-        var htmlOutput = "";
-        var entries = "";
+        var section = document.createElement("section"),
+            sectionHeading = data.title,
+            container = data.entries.length > 1 ? "<div class='columns flex fwrap'>" : "<div>",
+            entries = "";
 
         for (var i in data.entries) {
             var type = data.entries[i].type,
                 title = data.entries[i].title,
-                value = data.entries[i].value,
-                options = data.entries[i].options;
+                value = data.entries[i].value;
 
             if (type === "map") {
                 var coordinates = data.entries[i].value.geometry.coordinates,
-                notes = data.entries[i].value.notes
+                    notes = data.entries[i].value.notes
                 
                 entries += 
                 "<div class='flex'>" + 
@@ -92,7 +91,7 @@
                 "</div>";
             }
 
-            if (type === "gallery") {
+            else if (type === "gallery") {
                 var images = "";
                 
                 for (var i in value) {    
@@ -111,14 +110,40 @@
                     "</div>";
             }
 
-            // if (type !== "map" || type !== "gallery") {
-            //     entries += "<div>" + "<h6>" + data.entries[i].title + "</h6>" + "<p>" + data.entries[i].value + "</p>" + "</div>";
-            // }
-            
-        }
+            else if (type === "section") {
+                var items = data.entries[i],
+                    sectionTitle = items.title,
+                    sectionOutput = ""
+                
+                for (i in items.entries) {
+                    console.log(items.entries[i])
+                    
+                    sectionOutput += 
+                        "<div>" +
+                            "<h6>" + items.entries[i].title + "</h6>" +
+                            "<p>" + items.entries[i].value + "</p>" +
+                        "</div>";
+                }
 
-        htmlOutput = "<h2>" + sectionHeading + "</h2>" + "<div>" + entries + "</div>";
-        section.innerHTML = htmlOutput;
+                entries += 
+                    "<div>" +
+                        "<h3>" + sectionTitle + "</h3>" +
+                        "<div class='flex jcsb'>" +
+                            sectionOutput +
+                        "</div>" +
+                    "</div>"
+            }
+
+            else {
+                entries += 
+                    "<div>" + 
+                        "<h6>" + title + "</h6>" + 
+                        "<p>" + value + "</p>" + 
+                    "</div>";
+            }
+        }
+        
+        section.innerHTML = "<h2>" + sectionHeading + "</h2>" + container + entries;
 
         return section;
     }
