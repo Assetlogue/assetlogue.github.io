@@ -116,7 +116,7 @@ strong {
 }
 
 .header-left {
-    flex: 2;
+    flex: 1;
 }
 
 .report-details > div {
@@ -124,8 +124,23 @@ strong {
     margin-top: 12px;
 }
 
+.dateTime sub {
+    font-size: 10px;
+    line-height: 15px;
+    color: #7a869a;
+}
+
+.dateTimeSeparator {
+    margin: 0 20px;
+}
+
 .header-right {
-    flex: 1;
+    padding: 20px;
+    flex-basis: 200px;
+}
+
+.header-right img {
+    width: 100%;
 }
 
 /* Alert Styles */
