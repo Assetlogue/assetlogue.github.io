@@ -10,7 +10,9 @@ const json = [
                     geometry: {
                         type: "Point",
                         coordinates: [153.334088, -28.020293],
+                        elevation: "N/A",
                     },
+                    address: "197 Ashgrove Ave, Ashgrove QLD, 4060",
                     notes: "Next to Township Drive (Unique Plaza), Burleigh Heads",
                 },
             },
@@ -82,6 +84,7 @@ const json = [
             {
                 type: "field",
                 title: "Sap Object Id",
+                value: "N/A",
             },
             {
                 type: "field",

@@ -39,6 +39,10 @@ section h2 {
     color: #000;
 }
 
+section {
+    page-break-inside: avoid;
+}
+
 /* All unecessary elements */
 .topbar {
     display: none;
@@ -51,4 +55,8 @@ a[href]:after {
 a[href^="#"]:after,
 a[href^="javascript"]:after {
     content: "";
+}
+
+.alert::before {
+    display: none;
 }

@@ -1,6 +1,12 @@
 (function() {
     var data = json;
     var root = document.getElementById("report-data");
+    var htmlElement = document.documentElement;
+    var draft = true;
+
+    if (draft) {
+        htmlElement.classList.add("draft");
+    }
 
     function reportHeader() {
         var header = document.createElement("header");
@@ -60,6 +66,8 @@
 
             if (type === "map") {
                 var coordinates = data.entries[i].value.geometry.coordinates,
+                    elevation = data.entries[i].value.geometry.elevation,
+                    address = data.entries[i].value.address,
                     notes = data.entries[i].value.notes;
                 
                 entries += 
@@ -69,20 +77,20 @@
                         "<div class='flex jcsb'>" + 
                             "<div class='fgrow'>" + 
                                 "<h6>Latitude</h6>" + 
-                                "<p>" + coordinates[0] + "</p>" + 
-                            "</div>" + 
-                            "<div class='fgrow'>" + 
-                                "<h6>Longitude</h6>" + 
                                 "<p>" + coordinates[1] + "</p>" + 
                             "</div>" + 
                             "<div class='fgrow'>" + 
+                                "<h6>Longitude</h6>" + 
+                                "<p>" + coordinates[0] + "</p>" + 
+                            "</div>" + 
+                            "<div class='fgrow'>" + 
                                 "<h6>Elevation</h6>" + 
-                                "<p></p>" + 
+                                "<p>" + elevation + "</p>" + 
                             "</div>" + 
                         "</div>" + 
                         "<div>" + 
                             "<h6>Street Address</h6>" + 
-                            "<p></p>" + 
+                            "<p>" + address + "</p>" + 
                         "</div>" + 
                         "<div>" + 
                             "<h6>Notes</h6>" + 
