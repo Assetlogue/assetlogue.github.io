@@ -83,8 +83,9 @@
 
         for (var i in data.entries) {
             var type = data.entries[i].type,
-                title = data.entries[i].title,
-                value = data.entries[i].value;
+                title = data.entries[i].title || "",
+                value = data.entries[i].value || "",
+                unit = data.entries[i].unit || "";
 
             if (type === "map") {
                 var coordinates = data.entries[i].value.geometry.coordinates,
@@ -93,33 +94,33 @@
                     notes = data.entries[i].value.notes;
                 
                 entries += 
-                "<div class='flex'>" + 
-                    "<div class='map'>" + "some map url" + "</div>" + 
-                    "<div class='geo-details flex fdc'>" + 
-                        "<div class='flex jcsb'>" + 
-                            "<div class='fgrow'>" + 
-                                "<h6>Latitude</h6>" + 
-                                "<p>" + coordinates[1] + "</p>" + 
+                    "<div class='flex'>" + 
+                        "<div class='map'>" + "some map url" + "</div>" + 
+                        "<div class='geo-details flex fdc'>" + 
+                            "<div class='flex jcsb'>" + 
+                                "<div class='fgrow'>" + 
+                                    "<h6>Latitude</h6>" + 
+                                    "<p>" + coordinates[1] + "</p>" + 
+                                "</div>" + 
+                                "<div class='fgrow'>" + 
+                                    "<h6>Longitude</h6>" + 
+                                    "<p>" + coordinates[0] + "</p>" + 
+                                "</div>" + 
+                                "<div class='fgrow'>" + 
+                                    "<h6>Elevation</h6>" + 
+                                    "<p>" + elevation + "</p>" + 
+                                "</div>" + 
                             "</div>" + 
-                            "<div class='fgrow'>" + 
-                                "<h6>Longitude</h6>" + 
-                                "<p>" + coordinates[0] + "</p>" + 
+                            "<div>" + 
+                                "<h6>Street Address</h6>" + 
+                                "<p>" + address + "</p>" + 
                             "</div>" + 
-                            "<div class='fgrow'>" + 
-                                "<h6>Elevation</h6>" + 
-                                "<p>" + elevation + "</p>" + 
+                            "<div>" + 
+                                "<h6>Notes</h6>" + 
+                                "<p>" + notes + "</p>" + 
                             "</div>" + 
-                        "</div>" + 
-                        "<div>" + 
-                            "<h6>Street Address</h6>" + 
-                            "<p>" + address + "</p>" + 
-                        "</div>" + 
-                        "<div>" + 
-                            "<h6>Notes</h6>" + 
-                            "<p>" + notes + "</p>" + 
-                        "</div>" + 
-                    "</div>" +
-                "</div>";
+                        "</div>" +
+                    "</div>";
             }
 
             else if (type === "gallery") {
@@ -146,11 +147,15 @@
                     sectionTitle = items.title,
                     sectionOutput = "";
                 
-                for (i in items.entries) {                   
+                for (i in items.entries) {
+                    var title = items.entries[i].title || "",
+                        value = items.entries[i].value || "",
+                        unit = items.entries[i].unit || "";
+
                     sectionOutput += 
                         "<div>" +
-                            "<h6>" + items.entries[i].title + "</h6>" +
-                            "<p>" + items.entries[i].value + "</p>" +
+                            "<h6>" + title + "</h6>" +
+                            "<p>" + value + unit + "</p>" +
                         "</div>";
                 }
 
@@ -167,7 +172,7 @@
                 entries += 
                     "<div>" + 
                         "<h6>" + title + "</h6>" + 
-                        "<p>" + value + "</p>" + 
+                        "<p>" + value + unit + "</p>" + 
                     "</div>";
             }
         }

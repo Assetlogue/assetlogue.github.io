@@ -535,6 +535,7 @@ const json = [
                         type: "float",
                         unit: "%",
                         title: "Top Level (within 1m)",
+                        value: "00",
                     },
                     {
                         type: "float",
