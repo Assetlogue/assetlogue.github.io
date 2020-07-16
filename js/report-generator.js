@@ -25,15 +25,37 @@
                             "<div>400000000008</div>" +
                         "</div>" +
                         "<div>" +
-                            "<h6>Asset ID</h6>" +
-                            "<div>400000000008</div>" +
+                            "<h6>Report Type</h6>" +
+                            "<div>Manhole Condition Assessment</div>" +
                         "</div>" +
                         "<div>" +
-                            "<h6>Asset ID</h6>" +
-                            "<div>400000000008</div>" +
+                            "<h6>Work Order</h6>" +
+                            "<div>WO 0001</div>" +
+                        "</div>" +
+                        "<div>" +
+                            "<h6>Reported By</h6>" +
+                            "<div>Darth Vader</div>" +
+                        "</div>" +
+                        "<div>" +
+                            "<h6>Start & Finish</h6>" +
+                            "<div class='flex'>" + 
+                                "<span class='dateTime flex fdc'>" +
+                                    "7 Oct" +
+                                    "<sub>09:00am</sub>" +
+                                "</span>" +
+                                "<div class='dateTimeSeparator'>-</div>" +
+                                "<span class='dateTime flex fdc'>" +
+                                    "7 Oct" +
+                                    "<sub>17:00pm</sub>" +
+                                "</span>" +
+                            "</div>" +
+                        "</div>" +
+                        "<div>" +
+                            "<h6>Description</h6>" +
+                            "<div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>" +
                         "</div>" +
                     "</div>" +
-                    "<div class='alert aic'><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</div>"
+                    "<div class='alert aic'><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</div>" +
                 "</div>" +
                 "<div class='header-right flex jcc'>" +
                     "<img src='./images/cleanaway-logo.png' alt='Cleanaway' />" +
