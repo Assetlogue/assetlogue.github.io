@@ -2,6 +2,11 @@
     var data = json;
     var root = document.getElementById("report-data");
 
+    if (data[0].draft) {
+        var htmlElement = document.documentElement;
+        htmlElement.classList.add("draft");
+    }
+
     function reportHeader() {
         var header = document.createElement("header"),
             reportId = data[0].reportId,
