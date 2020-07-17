@@ -1,5 +1,19 @@
 const json = [
     {
+        type: "metadata",
+        draft: true,
+        reportId: "#CanIGetAReportID",
+        logo: "./images/cleanaway-logo.png",
+        metadata: {
+            "Asset ID": "4000000008",
+            "Report Type": "Manhole Condition Assessment",
+            "Work Order": "WO 0001",
+            "Reported By": "Darth Vader",
+            "Start & Finish": { start: { date: "7 Oct", time: "9:00am" }, finish: { date: "7 Oct", time: "5:00pm" } },
+            Description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        },
+    },
+    {
         type: "section",
         title: "Geolocation",
         entries: [
@@ -280,6 +294,7 @@ const json = [
                         {
                             type: "field",
                             required: true,
+                            value: "If yes details go here",
                         },
                     ],
                     No: [],
@@ -331,68 +346,58 @@ const json = [
                 },
             },
             {
-                type: "section",
-                entries: [
-                    {
-                        type: "radio",
-                        required: true,
-                        title: "Drop Pipe Condition",
-                        value: "Yes",
-                        options: {
-                            Yes: [
-                                {
-                                    type: "condition",
-                                    required: true,
-                                    title: "Condition Rating",
-                                    value: "1",
-                                    theme: {
-                                        style: "noRadio",
-                                    },
-                                    options: {
-                                        "1": [],
-                                        "2": [],
-                                        "3": [],
-                                        "4": [],
-                                        "5": [],
-                                    },
-                                },
-                            ],
-                            No: [],
+                type: "radio",
+                required: true,
+                title: "Drop Pipe Condition",
+                value: "Yes",
+                options: {
+                    Yes: [
+                        {
+                            type: "condition",
+                            required: true,
+                            title: "Condition Rating",
+                            value: "1",
+                            theme: {
+                                style: "noRadio",
+                            },
+                            options: {
+                                "1": [],
+                                "2": [],
+                                "3": [],
+                                "4": [],
+                                "5": [],
+                            },
                         },
-                    },
-                ],
+                    ],
+                    No: [],
+                },
             },
             {
-                type: "section",
-                entries: [
-                    {
-                        type: "radio",
-                        required: true,
-                        title: "Coating Condition",
-                        value: "Yes",
-                        options: {
-                            Yes: [
-                                {
-                                    type: "condition",
-                                    required: true,
-                                    title: "Condition Rating",
-                                    value: "1",
-                                    theme: {
-                                        style: "noRadio",
-                                    },
-                                    options: {
-                                        "1": [],
-                                        "2": [],
-                                        "3": [],
-                                        "4": [],
-                                        "5": [],
-                                    },
-                                },
-                            ],
-                            No: [],
+                type: "radio",
+                required: true,
+                title: "Coating Condition",
+                value: "Yes",
+                options: {
+                    Yes: [
+                        {
+                            type: "condition",
+                            required: true,
+                            title: "Condition Rating",
+                            value: "1",
+                            theme: {
+                                style: "noRadio",
+                            },
+                            options: {
+                                "1": [],
+                                "2": [],
+                                "3": [],
+                                "4": [],
+                                "5": [],
+                            },
                         },
-                    },
-                ],
+                    ],
+                    No: [],
+                },
             },
             {
                 type: "radio",
@@ -658,7 +663,7 @@ const json = [
             {
                 type: "check",
                 title: "MH Neck Adjustments",
-                value: ["Raise MH Neck"],
+                value: ["Raise MH Neck", "Re-adjust / realign neck to converter slab"],
                 theme: {
                     align: "vertical",
                 },

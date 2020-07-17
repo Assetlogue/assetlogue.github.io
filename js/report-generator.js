@@ -1,15 +1,45 @@
 (function() {
     var data = json;
     var root = document.getElementById("report-data");
-    var htmlElement = document.documentElement;
-    var draft = true;
-
-    if (draft) {
-        htmlElement.classList.add("draft");
-    }
 
     function reportHeader() {
-        var header = document.createElement("header");
+        var header = document.createElement("header"),
+            reportId = data[0].reportId,
+            metadata = data[0].metadata,
+            logo = data[0].logo,
+            output = "";
+
+        for (i in metadata) {
+            var value = "";
+            
+            if (typeof metadata[i] === "object") {
+                var startDate = metadata[i].start.date,
+                    startTime = metadata[i].start.time,
+                    finishDate = metadata[i].finish.date,
+                    finishTime = metadata[i].finish.time;
+            
+                value += 
+                    "<div class='flex'>" + 
+                        "<span class='dateTime flex fdc'>" +
+                            startDate +
+                            "<sub>" + startTime + "</sub>" +
+                        "</span>" +
+                        "<div class='dateTimeSeparator'>-</div>" +
+                        "<span class='dateTime flex fdc'>" +
+                            finishDate +
+                            "<sub>" + finishTime + "</sub>" +
+                        "</span>" +
+                    "</div>";
+            } else {
+                value += "<div>" + metadata[i] + "</div>";
+            }
+
+            output += 
+                "<div>" +
+                    "<h6>" + i + "</h6>" +
+                    value +
+                "</div>";
+        }
         
         header.innerHTML = 
             "<div class='topbar flex'>" +
@@ -18,47 +48,12 @@
             "</div>" +
             "<div class='header flex aic'>" +
                 "<div class='header-left'>" +
-                    "<h1 class='flex aic'>Report ID <span class='draft-chip'>DRAFT</span></h1>" +
-                    "<div class='report-details flex fwrap'>" +
-                        "<div>" +
-                            "<h6>Asset ID</h6>" +
-                            "<div>400000000008</div>" +
-                        "</div>" +
-                        "<div>" +
-                            "<h6>Report Type</h6>" +
-                            "<div>Manhole Condition Assessment</div>" +
-                        "</div>" +
-                        "<div>" +
-                            "<h6>Work Order</h6>" +
-                            "<div>WO 0001</div>" +
-                        "</div>" +
-                        "<div>" +
-                            "<h6>Reported By</h6>" +
-                            "<div>Darth Vader</div>" +
-                        "</div>" +
-                        "<div>" +
-                            "<h6>Start & Finish</h6>" +
-                            "<div class='flex'>" + 
-                                "<span class='dateTime flex fdc'>" +
-                                    "7 Oct" +
-                                    "<sub>09:00am</sub>" +
-                                "</span>" +
-                                "<div class='dateTimeSeparator'>-</div>" +
-                                "<span class='dateTime flex fdc'>" +
-                                    "7 Oct" +
-                                    "<sub>17:00pm</sub>" +
-                                "</span>" +
-                            "</div>" +
-                        "</div>" +
-                        "<div>" +
-                            "<h6>Description</h6>" +
-                            "<div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>" +
-                        "</div>" +
-                    "</div>" +
+                    "<h1 class='flex aic'>" + reportId + "<span class='draft-chip'>DRAFT</span></h1>" +
+                    "<div class='report-details flex fwrap'>" + output + "</div>" +
                     "<div class='alert aic'><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</div>" +
                 "</div>" +
                 "<div class='header-right flex jcc'>" +
-                    "<img src='./images/cleanaway-logo.png' alt='Cleanaway' />" +
+                    "<img src='" + logo + "' alt='Cleanaway' />" +
                 "</div>" +
             "</div>";
 
@@ -69,7 +64,9 @@
         var main = document.createElement("main");
 
         for (var i in data) {
-            main.appendChild(section(data[i]));
+            if(data[i].entries) {
+                main.appendChild(section(data[i]));
+            }
         }
 
         root.appendChild(main);
@@ -80,13 +77,14 @@
             sectionHeading = data.title,
             container = data.entries.length > 1 ? "<div class='columns flex fwrap'>" : "<div>",
             entries = "";
-
+     
         for (var i in data.entries) {
             var type = data.entries[i].type,
                 title = data.entries[i].title || "",
                 value = data.entries[i].value || "",
-                unit = data.entries[i].unit || "";
-
+                unit = data.entries[i].unit || "",
+                options = data.entries[i].options || "";
+                
             if (type === "map") {
                 var coordinates = data.entries[i].value.geometry.coordinates,
                     elevation = data.entries[i].value.geometry.elevation,
@@ -169,10 +167,13 @@
             }
 
             else {
+                var fieldOptions = optionsLoop(options);
+
                 entries += 
                     "<div>" + 
                         "<h6>" + title + "</h6>" + 
                         "<p>" + value + unit + "</p>" + 
+                        fieldOptions +
                     "</div>";
             }
         }
@@ -185,6 +186,23 @@
             container + entries;
 
         return section;
+    }
+
+    function optionsLoop(arr) {
+        var output = "";
+
+        for (i in arr) {
+            if (arr[i].length) {
+                var item = arr[i] || "";
+
+                for (i in item) {
+                    output += "<p>" + item[i].value + "</p>";
+                }
+            }
+            
+        }
+
+        return output;
     }
 
     reportHeader();
