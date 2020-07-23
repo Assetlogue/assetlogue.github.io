@@ -17,7 +17,8 @@ h4,
 h5,
 h6,
 body,
-.dateTime sub {
+.dateTime sub,
+.report-image {
     color: #000;
 }
 
@@ -27,7 +28,8 @@ body,
     -webkit-print-color-adjust: exact;
 }
 
-section {
+section,
+figure {
     page-break-inside: avoid;
 }
 
@@ -57,6 +59,25 @@ header {
 
 .header {
     border-color: #000;
+    padding-top: 20px;
+}
+
+.draft .header-left .alert {
+    display: inline-flex;
+    background: #ffebe6;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.1px;
+    color: #de350b;
+    padding: 2px 5px;
+    margin-top: 12px;
+}
+
+.draft .header-left .alert::before {
+    background: #de350b;
+    width: 16px;
+    height: 16px;
 }
 
 .header-right {
@@ -88,11 +109,6 @@ section > div {
     border-color: #000 !important;
 }
 
-a[href]:after {
-    content: " (" attr(href) ")";
-}
-
-a[href^="#"]:after,
-a[href^="javascript"]:after {
-    content: "";
+footer {
+    display: block;
 }

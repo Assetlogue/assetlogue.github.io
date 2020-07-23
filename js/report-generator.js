@@ -47,18 +47,33 @@
         }
         
         header.innerHTML = 
-            "<div class='topbar flex'>" +
-                "<span class='fgrow'>Created with <a href='#'>Assetlogue</a></span>" +
-                "<a href='#'>Log in</a>" +
-            "</div>" +
-            "<div class='header flex aic'>" +
-                "<div class='header-left'>" +
-                    "<h1 class='flex aic'>" + reportId + "<span class='draft-chip'>DRAFT</span></h1>" +
-                    "<div class='report-details flex fwrap'>" + output + "</div>" +
-                    "<div class='alert aic'><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</div>" +
+            "<div class='topbar fixed flex fdc'>" +
+                "<div class='bg'>" +  
+                    "<div class='flex aic max-width'>" +  
+                        "<span class='fgrow'>Created with <a href='#'>Assetlogue</a></span>" +
+                        "<a href='#'>Log in</a>" + "&nbsp;&nbsp;|&nbsp;&nbsp;" +
+                        "<a href='#'>Share</a>" + "&nbsp;&nbsp;|&nbsp;&nbsp;" +
+                        "<a href='#' class='btn-export iflex aic'>Export</a>" +
+                    "</div>" +
                 "</div>" +
-                "<div class='header-right flex jcc'>" +
-                    "<img src='" + logo + "' alt='Cleanaway' />" +
+                "<div class='bg-alert'>" + 
+                    "<div class='alert flex aic max-width'>" + 
+                        "<span><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</span>" +
+                    "</div>" +
+                "</div>" +
+            "</div>" +
+            "<div class='header'>" +
+                "<div class='flex-sm fdrr-sm aic max-width'>" +
+                    "<div class='header-right flex jcc-sm'>" +
+                        "<img src='" + logo + "' alt='Cleanaway' />" +
+                    "</div>" +
+                    "<div class='header-left'>" +
+                        "<h1 class='flex aic'>" + reportId + "<span class='draft-chip'>DRAFT</span></h1>" +
+                        "<div class='report-details flex-sm fwrap'>" + output + "</div>" +
+                        "<div class='alert'>" +
+                            "<span><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</span>" +
+                        "</div>" +
+                    "</div>" +
                 "</div>" +
             "</div>";
 
@@ -69,7 +84,7 @@
         var main = document.createElement("main");
 
         for (var i in data) {
-            if(data[i].entries) {
+            if (data[i].entries) {
                 main.appendChild(section(data[i]));
             }
         }
@@ -77,19 +92,60 @@
         root.appendChild(main);
     }
 
+    function reportImages() {
+        var footer = document.createElement("footer"),
+            output = "";
+        
+        for (var i in data) {
+            var entries = data[i].entries;
+
+            for (var i in entries) { 
+                if (entries[i].type === "gallery") {
+                    var images = entries[i].value;
+
+                    for(var i in images) {
+                        output += 
+                            "<figure class='report-image'>" +
+                                "<div data-date='" + images[i].date + "'>" +
+                                    "<img src='" + images[i].url + "' />" +
+                                "</div>" +
+                                "<figcaption>" + images[i].description + "</figcaption>" +
+                            "</figure>";
+                    }
+                }
+            }
+        }
+
+        footer.innerHTML = output;
+
+        root.appendChild(footer);
+    }
+
+    function toQueryString(obj) {
+        var parts = [];
+        
+        for (var i in obj) {
+            if (obj.hasOwnProperty(i)) {
+                parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
+            }
+        }
+        
+        return parts.join("&");
+    }
+
     function section(data) {
         var section = document.createElement("section"),
             sectionHeading = data.title,
-            container = data.entries.length > 1 ? "<div class='columns flex fwrap'>" : "<div>",
+            container = data.entries.length > 1 ? "<div class='columns flex-sm fwrap'>" : "<div>",
             entries = "";
-     
+
         for (var i in data.entries) {
             var type = data.entries[i].type,
                 title = data.entries[i].title || "",
                 value = data.entries[i].value || "",
                 unit = data.entries[i].unit || "",
-                options = data.entries[i].options || "";
-                
+                options = data.entries[i].options || {};
+  
             if (type === "map") {
                 var coordinates = data.entries[i].value.geometry.coordinates,
                     elevation = data.entries[i].value.geometry.elevation,
@@ -97,8 +153,7 @@
                     notes = data.entries[i].value.notes;
                 
                 entries += 
-                    "<div class='flex'>" + 
-                        "<div class='map'>" + "some map url" + "</div>" + 
+                    "<div class='flex-sm fdrr-sm'>" + 
                         "<div class='geo-details flex fdc'>" + 
                             "<div class='flex jcsb'>" + 
                                 "<div class='fgrow'>" + 
@@ -123,23 +178,24 @@
                                 "<p>" + notes + "</p>" + 
                             "</div>" + 
                         "</div>" +
+                        "<div class='map'>" + "some map url" + "</div>" + 
                     "</div>";
             }
 
             else if (type === "gallery") {
                 var images = "";
                 
-                for (var i in value) {    
+                for (var i in value) {
                     images += 
-                        "<div>" + 
+                        "<a href='image.html?" + toQueryString(value[i]) + "'>" + 
                             "<img src='" + value[i].url + "' title='" + value[i].title + "' alt='" + value[i].description + "' />" +
-                        "</div>"; 
+                        "</a>"; 
                 }
 
                 entries += 
                     "<div class='flex fdc'>" + 
-                        "<div class='alert alert-invert flex aic'>" + 
-                            "<strong>Info!</strong>&nbsp;Full size images will be displayed last on printed reports" +
+                        "<div class='alert alert-invert flex'>" + 
+                            "<span><strong>Info!</strong>&nbsp;Full size images will be displayed last on printed reports</span>" +
                         "</div>" + 
                         "<div class='images flex fwrap'>" + images + "</div>" +
                     "</div>";
@@ -150,7 +206,7 @@
                     sectionTitle = items.title,
                     sectionOutput = "";
                 
-                for (i in items.entries) {
+                for (var i in items.entries) {
                     var title = items.entries[i].title || "",
                         value = items.entries[i].value || "",
                         unit = items.entries[i].unit || "";
@@ -165,7 +221,7 @@
                 entries += 
                     "<div>" +
                         "<h3>" + sectionTitle + "</h3>" +
-                        "<div class='flex jcsb'>" +
+                        "<div class='flex-sm jcsb'>" +
                             sectionOutput +
                         "</div>" +
                     "</div>";
@@ -173,13 +229,29 @@
 
             else {
                 var fieldOptions = optionsLoop(options);
+                
+                if (type === "check") {
+                    var selectedOptions = "";
+                    
+                    for (var i in value) {
+                        selectedOptions += "<li>" + value[i] + "</li>"
+                    }
 
-                entries += 
-                    "<div>" + 
-                        "<h6>" + title + "</h6>" + 
-                        "<p>" + value + unit + "</p>" + 
-                        fieldOptions +
-                    "</div>";
+                    entries += 
+                        "<div>" + 
+                            "<h6>" + title + "</h6>" + 
+                            "<ul>" + selectedOptions + "</ul>" +
+                        "</div>";
+                }
+                
+                else {
+                    entries += 
+                        "<div>" + 
+                            "<h6>" + title + "</h6>" + 
+                            "<p>" + value + unit + "</p>" + 
+                            fieldOptions +
+                        "</div>";
+                }
             }
         }
         
@@ -190,21 +262,22 @@
             "</h2>" + 
             container + entries;
 
+        section.setAttribute("class", "max-width");
+
         return section;
     }
 
     function optionsLoop(arr) {
         var output = "";
 
-        for (i in arr) {
+        for (var i in arr) {
             if (arr[i].length) {
                 var item = arr[i] || "";
 
-                for (i in item) {
+                for (var i in item) {
                     output += "<p>" + item[i].value + "</p>";
                 }
-            }
-            
+            }  
         }
 
         return output;
@@ -212,4 +285,5 @@
 
     reportHeader();
     reportBody();
+    reportImages();
 })();

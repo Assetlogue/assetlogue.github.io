@@ -41,43 +41,20 @@ const json = [
                 required: true,
                 value: [
                     {
-                        url: "https://picsum.photos/seed/picsum/200",
+                        url: "../images/1000340_golden-gate-bridge-wallpapers-high-quality_1920x1200_h.jpg",
+                        title: "Test Image",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, vero. Vero inventore porro eveniet dolorum repellendus et doloremque voluptate earum aperiam nulla, quia aliquid magnam aut labore, nobis dignissimos eligendi iste! Odit sit ex, eveniet tenetur maxime saepe esse facilis in quidem ullam officiis error illum rem numquam hic laudantium!",
+                        date: "2011-10-05T14:48:00.000Z",
+                    },
+                    {
+                        url: "../images/ar-05.jpg",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
                     },
                     {
-                        url: "https://picsum.photos/seed/picsum/200",
-                        title: "Test Image",
-                        description: "Description of image",
-                        date: "2011-10-05T14:48:00.000Z",
-                    },
-                    {
-                        url: "https://picsum.photos/seed/picsum/200",
-                        title: "Test Image",
-                        description: "Description of image",
-                        date: "2011-10-05T14:48:00.000Z",
-                    },
-                    {
-                        url: "https://picsum.photos/seed/picsum/200",
-                        title: "Test Image",
-                        description: "Description of image",
-                        date: "2011-10-05T14:48:00.000Z",
-                    },
-                    {
-                        url: "https://picsum.photos/seed/picsum/200",
-                        title: "Test Image",
-                        description: "Description of image",
-                        date: "2011-10-05T14:48:00.000Z",
-                    },
-                    {
-                        url: "https://picsum.photos/seed/picsum/200",
-                        title: "Test Image",
-                        description: "Description of image",
-                        date: "2011-10-05T14:48:00.000Z",
-                    },
-                    {
-                        url: "https://picsum.photos/seed/picsum/200",
+                        url: "../images/ar-09.jpg",
                         title: "Test Image",
                         description: "Description of image",
                         date: "2011-10-05T14:48:00.000Z",
