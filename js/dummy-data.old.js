@@ -2,17 +2,16 @@ const json = [
     {
         type: "metadata",
         draft: true,
-        properties: {
-            workId: "8000000008",
-            assetId: "4000000008",
-            reportType: "Manhole Condition Assessment",
-            reportId: "9001",
-            reportDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-            account: "Cleanaway",
-            logo: "./images/cleanaway-logo.png",
-            reportedBy: "Darth Vader",
-            startTime: "2011-10-05T14:48:00.000Z",
-            finishTime: "2011-10-05T14:48:00.000Z",
+        reportId: "#CanIGetAReportID",
+        account: "Cleanaway",
+        logo: "./images/cleanaway-logo.png",
+        metadata: {
+            "Asset ID": "4000000008",
+            "Report Type": "Manhole Condition Assessment",
+            "Work Order": "WO 0001",
+            "Reported By": "Darth Vader",
+            "Start & Finish": { start: { date: "7 Oct", time: "9:00am" }, finish: { date: "7 Oct", time: "5:00pm" } },
+            Description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         },
     },
     {
@@ -77,6 +76,7 @@ const json = [
             {
                 type: "field",
                 title: "Sap Object Id",
+                value: "N/A",
             },
             {
                 type: "field",
@@ -106,7 +106,9 @@ const json = [
                             type: "radio",
                             required: true,
                             value: "Buried - see photos for location",
-                            style: ["vertical"],
+                            theme: {
+                                align: "vertical",
+                            },
                             options: {
                                 "Buried - see photos for location": [],
                                 "No access to private propety": [],
@@ -129,7 +131,9 @@ const json = [
                 title: "Manhole Location",
                 required: true,
                 value: "Park",
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     Park: [],
                     Verge: [],
@@ -156,7 +160,9 @@ const json = [
                 title: "Machinery Accessibility",
                 required: true,
                 value: "Good",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     Good: [],
                     Poor: [],
@@ -178,7 +184,9 @@ const json = [
                 title: "MH Type",
                 required: true,
                 value: "Pre-cast",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     "Pre-cast": [],
                     "Cast in-situ": [],
@@ -215,22 +223,22 @@ const json = [
                 },
             },
             {
-                type: "number",
+                type: "float",
                 unit: "mm",
                 title: "Neck Length",
             },
             {
-                type: "number",
+                type: "float",
                 unit: "mm",
                 title: "Chamber Diameter",
             },
             {
-                type: "number",
+                type: "float",
                 unit: "mm",
                 title: "Lid Diameter",
             },
             {
-                type: "number",
+                type: "float",
                 unit: "mm",
                 title: "Depth to Invert",
             },
@@ -244,7 +252,7 @@ const json = [
                 },
             },
             {
-                type: "number",
+                type: "float",
                 unit: "mm",
                 title: "Downstream Pipe Diameter",
             },
@@ -264,6 +272,7 @@ const json = [
                         {
                             type: "field",
                             required: true,
+                            value: "If yes details go here",
                         },
                     ],
                     No: [],
@@ -315,71 +324,67 @@ const json = [
                 },
             },
             {
-                type: "section",
-                entries: [
-                    {
-                        type: "radio",
-                        required: true,
-                        title: "Drop Pipe Condition",
-                        value: "Yes",
-                        options: {
-                            Yes: [
-                                {
-                                    type: "condition",
-                                    required: true,
-                                    title: "Condition Rating",
-                                    value: "1",
-                                    style: ["noRadio"],
-                                    options: {
-                                        "1": [],
-                                        "2": [],
-                                        "3": [],
-                                        "4": [],
-                                        "5": [],
-                                    },
-                                },
-                            ],
-                            No: [],
+                type: "radio",
+                required: true,
+                title: "Drop Pipe Condition",
+                value: "Yes",
+                options: {
+                    Yes: [
+                        {
+                            type: "condition",
+                            required: true,
+                            title: "Condition Rating",
+                            value: "1",
+                            theme: {
+                                style: "noRadio",
+                            },
+                            options: {
+                                "1": [],
+                                "2": [],
+                                "3": [],
+                                "4": [],
+                                "5": [],
+                            },
                         },
-                    },
-                ],
+                    ],
+                    No: [],
+                },
             },
             {
-                type: "section",
-                entries: [
-                    {
-                        type: "radio",
-                        required: true,
-                        title: "Coating Condition",
-                        value: "Yes",
-                        options: {
-                            Yes: [
-                                {
-                                    type: "condition",
-                                    required: true,
-                                    title: "Condition Rating",
-                                    value: "1",
-                                    style: ["noRadio"],
-                                    options: {
-                                        "1": [],
-                                        "2": [],
-                                        "3": [],
-                                        "4": [],
-                                        "5": [],
-                                    },
-                                },
-                            ],
-                            No: [],
+                type: "radio",
+                required: true,
+                title: "Coating Condition",
+                value: "Yes",
+                options: {
+                    Yes: [
+                        {
+                            type: "condition",
+                            required: true,
+                            title: "Condition Rating",
+                            value: "1",
+                            theme: {
+                                style: "noRadio",
+                            },
+                            options: {
+                                "1": [],
+                                "2": [],
+                                "3": [],
+                                "4": [],
+                                "5": [],
+                            },
                         },
-                    },
-                ],
+                    ],
+                    No: [],
+                },
             },
             {
                 type: "radio",
                 required: true,
                 title: "Root Intrusion",
                 value: "None",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     None: [],
                     Low: [],
@@ -392,7 +397,9 @@ const json = [
                 required: true,
                 title: "Infiltration",
                 value: "None",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     None: [],
                     Weep: [],
@@ -415,7 +422,9 @@ const json = [
                 required: true,
                 title: "Lid/Ring Condition",
                 value: "1",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     "1": [],
                     "2": [],
@@ -429,7 +438,9 @@ const json = [
                 required: true,
                 title: "Surround Condition",
                 value: "1",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     "1": [],
                     "2": [],
@@ -443,7 +454,9 @@ const json = [
                 required: true,
                 title: "Benching Condition",
                 value: "1",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     "1": [],
                     "2": [],
@@ -457,7 +470,9 @@ const json = [
                 required: true,
                 title: "Manhole Wall Condition",
                 value: "1",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     "1": [],
                     "2": [],
@@ -471,7 +486,9 @@ const json = [
                 required: true,
                 title: "Underside of Converter Slab Condition",
                 value: "1",
-                style: ["noRadio"],
+                theme: {
+                    style: "noRadio",
+                },
                 options: {
                     "1": [],
                     "2": [],
@@ -481,7 +498,7 @@ const json = [
                 },
             },
             {
-                type: "number",
+                type: "float",
                 unit: "pH",
                 required: true,
                 title: "Manhole Wall pH",
@@ -498,17 +515,18 @@ const json = [
                 title: "Oxygen (19.5% - 23.3%)",
                 entries: [
                     {
-                        type: "number",
+                        type: "float",
                         unit: "%",
                         title: "Top Level (within 1m)",
+                        value: "00",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "%",
                         title: "Middle Level" /*|| defaultTitle*/,
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "%",
                         title: "Bottom Level (within 1m)" /*|| defaultTitle*/,
                     },
@@ -519,17 +537,17 @@ const json = [
                 title: "Flammable Gases (LEL <5% - <10%)",
                 entries: [
                     {
-                        type: "number",
+                        type: "float",
                         unit: "%",
                         title: "Top Level (within 1m)",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "%",
                         title: "Middle Level",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "%",
                         title: "Bottom Level (within 1m)",
                     },
@@ -540,17 +558,17 @@ const json = [
                 title: "Carbon Monoxide(<30ppm)",
                 entries: [
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Top Level (within 1m)",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Middle Level",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Bottom Level (within 1m)",
                     },
@@ -561,17 +579,17 @@ const json = [
                 title: "H2S",
                 entries: [
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Top Level (within 1m)",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Middle Level",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Bottom Level (within 1m)",
                     },
@@ -582,17 +600,17 @@ const json = [
                 title: "CO2",
                 entries: [
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Top Level (within 1m)",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Middle Level",
                     },
                     {
-                        type: "number",
+                        type: "float",
                         unit: "ppm",
                         title: "Bottom Level (within 1m)",
                     },
@@ -608,7 +626,9 @@ const json = [
                 type: "radio",
                 title: "Lid and Surround",
                 value: "Replace lid only (like for like)",
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Replace lid only (like for like)": [],
                     "Replace lid, frame and surround (like for like)": [],
@@ -621,8 +641,10 @@ const json = [
             {
                 type: "check",
                 title: "MH Neck Adjustments",
-                value: ["Raise MH Neck"],
-                style: ["vertical"],
+                value: ["Raise MH Neck", "Re-adjust / realign neck to converter slab"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Raise MH Neck": [],
                     "Re-adjust / realign neck to converter slab": [],
@@ -632,7 +654,9 @@ const json = [
                 type: "check",
                 title: "Step Irons",
                 value: ["Remove existing step irons and make good MH walls"],
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Remove existing step irons and make good MH walls": [],
                 },
@@ -641,7 +665,9 @@ const json = [
                 type: "check",
                 title: "Step Irons",
                 value: ["Remove existing step irons and make good MH walls"],
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Remove existing step irons and make good MH walls": [],
                 },
@@ -650,7 +676,9 @@ const json = [
                 type: "check",
                 title: "Infiltration",
                 value: ["Remove all traces of root intrusion throughout MH and seal all root Penetrations"],
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Remove all traces of root intrusion throughout MH and seal all root Penetrations": [],
                     "Seal all leaking joints, cracks and/or instances of infiltration": [],
@@ -660,7 +688,9 @@ const json = [
                 type: "check",
                 title: "Refurbish MH Walls",
                 value: ["Clean and repair steel reinforcement"],
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Clean and repair steel reinforcement": [],
                     "Patch and repair deteriorated concrete": [],
@@ -671,7 +701,9 @@ const json = [
                 type: "check",
                 title: "Benching",
                 value: ["Make repairs to existing benching returning to as new condition"],
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Make repairs to existing benching returning to as new condition": [],
                     "Replace existing benching": [],
@@ -681,7 +713,9 @@ const json = [
                 type: "check",
                 title: "Drop Pipes",
                 value: ["Clean and refurbish existing drop pipes"],
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Clean and refurbish existing drop pipes": [],
                     "Replace drop pipes": [],
@@ -691,7 +725,9 @@ const json = [
                 type: "check",
                 title: "Coating System",
                 value: ["Apply coating system to entire MH (including neck)"],
-                style: ["vertical"],
+                theme: {
+                    align: "vertical",
+                },
                 options: {
                     "Apply coating system to entire MH (including neck)": [],
                     "Patch all instances of failed coating system": [],

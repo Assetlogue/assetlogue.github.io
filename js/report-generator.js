@@ -10,40 +10,70 @@
     function reportHeader() {
         var header = document.createElement("header"),
             reportId = data[0].reportId,
-            metadata = data[0].metadata,
-            logo = data[0].logo,
+            metadata = data[0].properties,
+            // account = data[0].account,
+            // logo = data[0].logo,
             output = "";
 
-        for (i in metadata) {
-            var value = "";
+        // for (var i in metadata) {
+        //     var value = "";
             
-            if (typeof metadata[i] === "object") {
-                var startDate = metadata[i].start.date,
-                    startTime = metadata[i].start.time,
-                    finishDate = metadata[i].finish.date,
-                    finishTime = metadata[i].finish.time;
+        //     if (typeof metadata[i] === "object") {
+        //         var startDate = metadata[i].start.date,
+        //             startTime = metadata[i].start.time,
+        //             finishDate = metadata[i].finish.date,
+        //             finishTime = metadata[i].finish.time;
             
-                value += 
-                    "<div class='flex'>" + 
-                        "<span class='dateTime flex fdc'>" +
-                            startDate +
-                            "<sub>" + startTime + "</sub>" +
-                        "</span>" +
-                        "<div class='dateTimeSeparator'>-</div>" +
-                        "<span class='dateTime flex fdc'>" +
-                            finishDate +
-                            "<sub>" + finishTime + "</sub>" +
-                        "</span>" +
-                    "</div>";
-            } else {
-                value += "<div>" + metadata[i] + "</div>";
-            }
+        //         value += 
+        //             "<div class='flex'>" + 
+        //                 "<span class='dateTime flex fdc'>" +
+        //                     startDate +
+        //                     "<sub>" + startTime + "</sub>" +
+        //                 "</span>" +
+        //                 "<div class='dateTimeSeparator'>-</div>" +
+        //                 "<span class='dateTime flex fdc'>" +
+        //                     finishDate +
+        //                     "<sub>" + finishTime + "</sub>" +
+        //                 "</span>" +
+        //             "</div>";
+        //     } else {
+        //         value += "<div>" + metadata[i] + "</div>";
+        //     }
 
-            output += 
-                "<div>" +
-                    "<h6>" + i + "</h6>" +
-                    value +
-                "</div>";
+        //     output += 
+        //         "<div>" +
+        //             "<h6>" + i + "</h6>" +
+        //             value +
+        //         "</div>";
+        // }
+
+        // Hardcoded version variables
+        var account = metadata.account;
+        var logo = metadata.logo;
+        var reportId = metadata.reportId;
+        var assetId = metadata.assetId;
+        var reportType = metadata.reportType;
+        var workOrder = metadata.workId;
+        var reportedBy = metadata.reportedBy;
+        var startTime = new Date(metadata.startTime);
+        var finishTime = new Date(metadata.finishTime);
+        var description = metadata.reportDescription;
+
+        function formatDate(date) {
+            var day = date.toLocaleDateString("en-US", { day: "numeric" });
+            var month = date.toLocaleDateString("en-US", { month: "short" });
+            return month + " " + day;
+        }
+
+        function formatTime(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
         }
         
         header.innerHTML = 
@@ -65,11 +95,47 @@
             "<div class='header'>" +
                 "<div class='flex-sm fdrr-sm aic max-width'>" +
                     "<div class='header-right flex jcc-sm'>" +
-                        "<img src='" + logo + "' alt='Cleanaway' />" +
+                        "<img src='" + logo + "' alt='" + account + "' />" +
                     "</div>" +
                     "<div class='header-left'>" +
                         "<h1 class='flex aic'>" + reportId + "<span class='draft-chip'>DRAFT</span></h1>" +
-                        "<div class='report-details flex-sm fwrap'>" + output + "</div>" +
+                        // "<div class='report-details flex-sm fwrap'>" + output + "</div>" + // Original looped output
+                        "<div class='report-details flex-sm fwrap'>" +
+                            "<div>" +
+                                "<h6>Asset ID</h6>" +
+                                assetId +
+                            "</div>" +
+                            "<div>" +
+                                "<h6>Report Type</h6>" +
+                                reportType +
+                            "</div>" +
+                            "<div>" +
+                                "<h6>Work Order</h6>" +
+                                workOrder +
+                            "</div>" +
+                            "<div>" +
+                                "<h6>Reported By</h6>" +
+                                reportedBy +
+                            "</div>" +
+                            "<div>" +
+                                "<h6>Start & Finish</h6>" +
+                                "<div class='flex'>" + 
+                                    "<span class='dateTime flex fdc'>" +
+                                        formatDate(startTime) +
+                                        "<sub>" + formatTime(startTime) + "</sub>" +
+                                    "</span>" +
+                                    "<div class='dateTimeSeparator'>-</div>" +
+                                    "<span class='dateTime flex fdc'>" +
+                                        formatDate(finishTime) +
+                                        "<sub>" + formatTime(finishTime) + "</sub>" +
+                                    "</span>" +
+                                "</div>" +
+                            "</div>" +
+                            "<div>" +
+                                "<h6>Description</h6>" +
+                                description +
+                            "</div>" +
+                        "</div>" +
                         "<div class='alert'>" +
                             "<span><strong>Draft!</strong>&nbsp;The information contained herein is subject to change until published.</span>" +
                         "</div>" +
